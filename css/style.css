@@ -109,7 +109,7 @@ a {
 }
 
 .landing-logo h1 {
-    color: #c8b893;
+    /* color: #c8b893; */
     font-size: 48px;
     margin-bottom: -5px;
     animation: fadeIn 1s ease-out 0.4s forwards;
@@ -117,15 +117,15 @@ a {
 }
 
 .landing-logo .boxed {
-    color: #c8b893;
+    /* color: #c8b893; */
 }
 
 .landing-logo .up {
-    color: black;
+    /* color: black; */
 }
 
 .landing-logo p {
-    color: #60ae8d;
+    /* color: #60ae8d; */
     font-style: italic;
     font-size: 20px;
     max-width: 600px;
@@ -747,3 +747,4 @@ footer {
     color: var(--flood-color);
     text-decoration: underline;
 }
+
