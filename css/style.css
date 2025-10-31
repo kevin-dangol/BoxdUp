@@ -13,13 +13,13 @@ body {
     font-family: Arial, sans-serif;
     line-height: 1.6;
     color: #ffffff;
-    /*background-color: rgb(72, 157, 133);*/
-    background: linear-gradient(135deg, #7a1e1e 0%, #5a1616 100%);
+    background-color: rgb(0, 0, 0);
+    /*background: linear-gradient(#135deg 0%, #7a1e1e 50%, #5a1616 100%);*/
     min-height: 100vh;
 }
 
 .main-bg {
-    background-image: linear-gradient(0deg, rgb(255, 255, 255) 0%, rgba(255, 255, 255, 0.29) 50%, rgba(255, 255, 255, 0.29) 100%), url(../imgs/main.jpg);
+    background-image: linear-gradient(0deg, rgb(0, 0, 0) 0%, rgba(0, 0, 0, 0.29) 50%, rgba(0, 0, 0, 0.29) 100%), url(../imgs/main.jpg);
     background-size: auto 40%;
     background-position: top center;
     background-repeat: no-repeat;
@@ -117,15 +117,15 @@ a {
 }
 
 .landing-logo .boxed {
-    color: white;
+    color: #e8dbc0;
 }
 
 .landing-logo .up {
-    color: white;
+    color: #e8dbc0;
 }
 
 .landing-logo p {
-    color: white;
+    color: #50d308;
     font-style: italic;
     font-size: 20px;
     max-width: 600px;
@@ -183,7 +183,7 @@ a {
     padding: 30px;
     margin-bottom: 31px;
     font-size: 31px;
-    color: #552020;
+    color: #db9e9e;
 }
 
 .why-cards {
@@ -204,7 +204,7 @@ a {
     position: relative;
     transition: all 0.3s ease;
     /*background-color: rgb(97, 194, 216);*/
-    background-image: linear-gradient(135deg, #fafafa 0%, #f5f5f5 100%);
+    background-image: linear-gradient(135deg, #252525 0%, #121212 100%);
     /*background-image: linear-gradient(0deg, rgba(79, 120, 140, 0.37) 0%, rgba(109, 163, 189, 0.67) 50%, rgb(147, 218, 255) 100%);*/
     /*border: 2px solid #c9a063;*/
     border: 3px solid transparent;
@@ -214,8 +214,8 @@ a {
 
 .why-card:hover {
     transform: scale(1.02);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-    border-color: #c9a063;
+    box-shadow: 0 10px 25px rgba(55, 55, 55, 0.2);
+    border-color: #cedca8;
 }
 
 .why-card-content {
@@ -233,7 +233,7 @@ a {
 }
 
 .why-card-content h2 {
-    color: #7a1e1e;
+    color: #e08181;
     font-size: 28px;
     margin-bottom: 20px;
     font-weight: 700;
@@ -247,7 +247,7 @@ a {
 .why-card-content .Description p {
     display: flex;
     margin-bottom: 19px;
-    color: #666;
+    color: #a8a095;
     line-height: 1.8;
     font-size: 16px;
 }
@@ -276,7 +276,7 @@ a {
 
 .plans-card:hover {
     /*border: 2px solid;*/
-    border-color: #ffdca0;
+    border-color: #3faa2e;
     transform: scale(1.02);
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
 }
@@ -369,7 +369,7 @@ a {
 footer {
     text-align: center;
     padding: 42px 0;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(67, 67, 67, 0.53);
     margin-top: 40px;
 }
 
@@ -747,5 +747,3 @@ footer {
     color: var(--flood-color);
     text-decoration: underline;
 }
-
-
