@@ -23,6 +23,7 @@ body {
     background-size: auto 40%;
     background-position: top center;
     background-repeat: no-repeat;
+    width: 100vw;
 }
 
 .navbar {
@@ -747,3 +748,4 @@ footer {
     color: var(--flood-color);
     text-decoration: underline;
 }
+
