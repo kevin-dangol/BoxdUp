@@ -3,7 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Box'd Up</title>
-    <link rel="stylesheet" href="frontend/css/style.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/LoggedInStyles.css">
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 
 </head>
 <body class="main-bg">
@@ -11,10 +14,20 @@
         <nav class="navbar">
             <div class="container">
                 <div class="nav-links">
-                    <a href="index.html" class="nav-link">Home</a>
+                    <a href="#" class="nav-link home-link">Home</a>
                     <a href="#plans-card" class="nav-link">Plans</a>
-                    <a href="frontend/pages/login.html" class="nav-link right-nav-link" id="login-link">Login</a>
-                    <a href="about.html" class="nav-link right-margin-nav-link home-link">About</a>
+                    <a href="login.html" class="nav-link right-nav-link" id="login-link">Login</a>
+                    <a href="signup.html" class="nav-link right-nav-link" id="signup-link">Sign Up</a>
+                    <a href="about.html" class="nav-link right-nav-link">About</a>
+                    <div class="profile-menu right-margin-nav-link" id="profile-menu">
+                        <span class="profile-icon">👤</span>
+                        <div class="dropdown-content">
+                            <a href="notifications.html">Notifications</a>
+                            <a href="dashboard.html" id="dashboard-link" >Dashboard</a>
+                            <a href="settings.html">Settings</a>
+                            <a href="#" onclick="logout()">Logout</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </nav>
@@ -23,7 +36,7 @@
     <section class="landing">
         <div class="landing-content">
             <div class="landing-logo">
-                <img src="frontend/imgs/logo.png" alt="logo" class="logo">
+                <img src="../imgs/logo.png" alt="logo" class="logo">
                 <div class="logo-text">
                     <h1 class="boxed">Box'd</h1>
                     <h1 class="up">Up</h1>
@@ -35,7 +48,7 @@
                 Choose your plan, build your perfect meal for each day of the week,
                 and enjoy restaurant-quality lunches delivered to your door.
             </p>
-            <a href="frontend/pages/signup.html" class="signup-button" id="signup-button">Sign Up</a>
+            <a href="#plans-card" class="start-button" id="start-button">Get Started</a>
         </div>
     </section>
 
@@ -102,7 +115,7 @@
                             <p><span>Cancel anytime</span></p>
                         </div>
                         <div class="select-button">
-                        <a href="frontend/pages/login.html" class="cards-button" id="weekly-button">Select Weekly</a>
+                        <a href="weekly" class="cards-button" id="weekly-button">Select Weekly</a>
                         </div>
                     </div>
                 </div>
@@ -120,7 +133,7 @@
                             <p><span>15% savings</span></p>
                         </div>
                         <div class="select-button">
-                        <a href="frontend/pages/login.html" class="cards-button" id="monthly-button">Select Monthly</a>
+                        <a href="monthly" class="cards-button" id="monthly-button">Select Monthly</a>
                         </div>
                     </div>
                 </div>
@@ -139,7 +152,7 @@
                             <p><span>Exclusive menu items</span></p>
                         </div>
                         <div class="select-button">
-                            <a href="frontend/pages/login.html" class="cards-button" id="yearly-button">Select Yearly</a>
+                            <a href="yearly" class="cards-button" id="yearly-button">Select Yearly</a>
                         </div>
                     </div>
                 </div>
@@ -153,5 +166,7 @@
             <p>IIMS Sem 5</p>
         </div>
     </footer>
+    <div id="notification-container" style="position: fixed; top: 20px; right: 20px; z-index: 1000;"></div>
+    <script src="../auth.js"></script>
 </body>
 </html>
