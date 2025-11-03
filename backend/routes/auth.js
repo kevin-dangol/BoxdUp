@@ -33,6 +33,7 @@ router.post('/signup', async (req, res) => {
         console.log('Signup request:', { email, username });
         const hashedPassword = await bcrypt.hash(password, 10);
         await User.create(email, username, hashedPassword);
+        await User.updateUserCardAndSubscription(email);
         res.json({ success: true, message: 'User registered successfully' });
     } catch (error) {
         console.error('Signup error:', error);
@@ -50,6 +51,8 @@ router.post('/login', async (req, res) => {
         if (!user || !await bcrypt.compare(password, user.password)) {
             return res.status(401).json({ success: false, message: 'Invalid credentials' });
         }
+
+        await User.updateUserCardAndSubscription(user.email);
 
         const token = jwt.sign({ id: user.id, is_admin: user.is_admin }, SECRET_KEY, { expiresIn: '1h' });
         res.json({ success: true, message: 'Login successful', token, is_admin: user.is_admin });

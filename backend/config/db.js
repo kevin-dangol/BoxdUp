@@ -4,7 +4,7 @@ const db = mysql.createPool({
     host: 'localhost',
     user: 'root',
     password: '',
-    database:'boxdup_auth'
+    database:'boxdup'
 });
 
 module.exports = db;
