@@ -79,6 +79,7 @@
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ email, username, password }),
+                    credentials: 'include'
                 });
                 const result = await response.json();
                 showNotification(result.message, result.success ? 'info' : 'error');
