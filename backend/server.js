@@ -14,8 +14,8 @@ app.use('/api/auth', authRoutes);
 
 app.use(express.static(path.join(__dirname, '../')));
 
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../', 'index.html'));
+app.use((req, res, next) => {
+  res.sendFile(path.join(__dirname, 'frontend', 'index.html'));
 });
 
 // creating tables
