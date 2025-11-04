@@ -2,29 +2,23 @@ const express = require('express');
 const cors = require('cors');
 const authRoutes = require('./routes/auth');
 const db = require('./config/db');
+const path = require('path');
 
 const app = express();
 
-app.use(cors({
-    credentials: true,
-    origin: '*'
-}));
+app.use(cors({ credentials: true, origin: '*' }));
 app.use(express.json());
-app.use(express.static('../'));
 
+// API routes
 app.use('/api/auth', authRoutes);
 
-db.getConnection()
-    .then(() => console.log('Database connected successfully'))
-    .catch(err => console.error('Database connection failed:', err));
+app.use(express.static(path.join(__dirname, '../')));
 
-app.listen(3001, () => {
-    console.log('Server running on port 3001');
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../', 'index.html'));
 });
 
-
 // creating tables
-
 (async () => {
   try {
     const conn = await db.getConnection();
@@ -42,8 +36,12 @@ app.listen(3001, () => {
     `);
 
     conn.release();
-    console.log('✅ Users table created or already exists');
+    console.log('Users table created or already exists');
   } catch (err) {
-    console.error('❌ Failed to create table:', err);
+    console.error('Failed to create table:', err);
   }
 })();
+
+//start server
+const PORT = process.env.PORT || 3001;
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
