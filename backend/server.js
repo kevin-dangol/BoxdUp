@@ -6,7 +6,12 @@ const path = require('path');
 
 const app = express();
 
-app.use(cors({ credentials: true, origin: '*' }));
+const corsOptions = {
+  origin: 'https://boxdup.onrender.com',
+  credentials: true
+};
+
+app.use(cors(corsOptions));
 app.use(express.json());
 
 // API routes
