@@ -79,7 +79,7 @@ app.use((req, res, next) => {
     `);
 
     conn.release();
-    console.log('Cards table created or already exists');
+    console.log('Subscriptions table created or already exists');
   } catch (err) {
     console.error('Failed to create table:', err);
   }
