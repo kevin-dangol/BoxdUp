@@ -34,6 +34,18 @@ app.use((req, res, next) => {
             s_id INT NULL
         );
     `);
+
+    conn.release();
+    console.log('Users table created or already exists');
+  } catch (err) {
+    console.error('Failed to create table:', err);
+  }
+})();
+
+(async () => {
+  try {
+    const conn = await db.getConnection();
+
     await conn.query(`
       CREATE TABLE IF NOT EXISTS cards (
             c_id INT AUTO_INCREMENT PRIMARY KEY,
@@ -46,7 +58,7 @@ app.use((req, res, next) => {
     `);
 
     conn.release();
-    console.log('Users table created or already exists');
+    console.log('Cards table created or already exists');
   } catch (err) {
     console.error('Failed to create table:', err);
   }
