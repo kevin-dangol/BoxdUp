@@ -64,6 +64,27 @@ app.use((req, res, next) => {
   }
 })();
 
+(async () => {
+  try {
+    const conn = await db.getConnection();
+
+    await conn.query(`
+      CREATE TABLE IF NOT EXISTS subscriptions (
+            s_id INT AUTO_INCREMENT PRIMARY KEY,
+            email VARCHAR(100) NOT NULL,
+            name VARCHAR(100) NOT NULL,
+            address VARCHAR(255) NULL,
+            number VARCHAR(20) NULL
+        );
+    `);
+
+    conn.release();
+    console.log('Cards table created or already exists');
+  } catch (err) {
+    console.error('Failed to create table:', err);
+  }
+})();
+
 //start server
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
