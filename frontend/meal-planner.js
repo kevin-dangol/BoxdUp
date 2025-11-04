@@ -1,8 +1,3 @@
-const mealplanner1 = document.querySelector('.meal-planner-1');
-const mealplanner2 = document.querySelector('.meal-planner-2');
-const mealplanner3 = document.querySelector('.meal-planner-3');
-
-
 let weeklyMeals = {
     sunday: null,
     monday: null,
@@ -152,39 +147,29 @@ function randomizeWeek() {
     updateProgress();
 }
 
-function saveForLater() {
-    alert('Your weekly meal plan has been saved! You can return to complete it later.');
-}
+const mealplanner1 = document.querySelector('.meal-planner-1');
+const mealplanner2 = document.querySelector('.meal-planner-2');
+const mealplanner3 = document.querySelector('.meal-planner-3');
 
 function proccedto1() {
-    const completed = Object.values(weeklyMeals).filter(meal => meal !== null).length;
-    if (completed < 5) {
-        alert(`Please complete all 6 days before proceeding to checkout. You have ${completed} days planned.`);
-        return;
-    }
-    mealplanner1.style.display = 'inline-block';
+    mealplanner1.style.display = 'inline';
     mealplanner2.style.display = 'none';
     mealplanner3.style.display = 'none';
 }
 
 function proccedto2() {
     const completed = Object.values(weeklyMeals).filter(meal => meal !== null).length;
-    if (completed < 5) {
-        alert(`Please complete all 6 days before proceeding to checkout. You have ${completed} days planned.`);
+    if (completed < 6) {
+        showNotification('Please complete all 6 days before proceeding.', 'error');
         return;
     }
     mealplanner1.style.display = 'none';
-    mealplanner2.style.display = 'inline-block';
+    mealplanner2.style.display = 'inline';
     mealplanner3.style.display = 'none';
 }
 
 function proccedto3() {
-    const completed = Object.values(weeklyMeals).filter(meal => meal !== null).length;
-    if (completed < 5) {
-        alert(`Please complete all 6 days before proceeding to checkout. You have ${completed} days planned.`);
-        return;
-    }
     mealplanner1.style.display = 'none';
     mealplanner2.style.display = 'none';
-    mealplanner3.style.display = 'inline-block';
+    mealplanner3.style.display = 'inline';
 }

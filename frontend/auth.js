@@ -1,4 +1,4 @@
-//check if the user is logedin or not
+//check if the user is logged in or not
 async function checkSession() {
     const token = localStorage.getItem('token');
     const loginLink = document.getElementById('login-link');

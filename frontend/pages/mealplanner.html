@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <title>Meal Plan</title>
     <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/logged-in-styles.css">
     <link rel="stylesheet" href="../css/meal-planner-styles.css">
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
@@ -35,7 +34,7 @@
     </header>
 
     <section class="meal-planner-section">
-        <section class="meal-planner-1" id="meal-planner-1">
+        <section class="meal-planner-1" style="display: none;" id="meal-planner-1">
             <section class="page-title">
                 <div class="title">
                     <h1>Pick your meal</h1>
@@ -53,7 +52,6 @@
                 <div class="selected-plan">
                     <span>📦 Weekly Plan Selected - 6 Lunches</span>
                 </div>
-
                 <div class="completion-indicator">
                     <div class="completion-text">
                         <span id="completedCount">0</span> of 6 days planned
@@ -145,7 +143,7 @@
                     </div>
 
                     <div class="action-footer">
-                        <button class="footer-btn btn-primary" onclick="proccedto2()">Next</button>
+                        <button class="footer-btn btn-primary next-button" onclick="proccedto2()">Next</button>
                     </div>
                 </section>
             </section>
@@ -266,65 +264,82 @@
             </section>
 
             <section class="form-container">
-                <div class="container">
-                    <div class="input-row">
+                <form class="form" id="form">
+                    <div class="input-row-2">
                         <div class="form-group">
                             <label class="form-label">First Name</label>
-                            <input type="text" class="form-input" placeholder="John">
+                            <input type="text" class="form-input" placeholder="John" id="firstName">
                         </div>
                         <div class="form-group">
                             <label class="form-label">Last Name</label>
-                            <input type="text" class="form-input" placeholder="Doe">
+                            <input type="text" class="form-input" placeholder="Doe" id="lastName">
                         </div>
                     </div>
 
-                    <div class="input-row">
+                    <div class="form-group">
+                        <label class="form-label">Email</label>
+                        <input type="text" class="form-input" placeholder="Johndoe@gmail.com" id="email">
+                    </div>
+
+                    <div class="input-row-2">
                         <div class="form-group">
                             <label class="form-label">Number</label>
-                            <input type="text" class="form-input" placeholder="9876543210">
+                            <input type="text" class="form-input" placeholder="9876543210" id="number">
                         </div>
                         <div class="form-group">
                             <label class="form-label">Address</label>
-                            <input type="text" class="form-input" placeholder="Nepal, Kathmandu">
+                            <input type="text" class="form-input" placeholder="Nepal, Kathmandu" id="address">
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label class="form-label">Card Number</label>
-                        <input type="text" class="form-input" placeholder="1234 5678 9012 3456">
+                        <input type="text" class="form-input" placeholder="1234 5678 9012 3456" id="cardNumber">
                     </div>
 
-                    <div class="input-row">
+                    <div class="input-row-2">
                         <div class="form-group">
                             <label class="form-label">Expiry Date</label>
-                            <input type="text" class="form-input" placeholder="MM/YY">
+                            <input type="text" class="form-input" placeholder="MM/YY" id="cardExpiry">
                         </div>
                         <div class="form-group">
                             <label class="form-label">CVV</label>
-                            <input type="text" class="form-input" placeholder="123">
+                            <input type="text" class="form-input" placeholder="123" id="cardCvv">
                         </div>
                     </div>
 
-                    <div class="form-group">
-                        <label class="form-label">Cardholder Name</label>
-                        <input type="text" class="form-input" placeholder="John Doe">
+                    <div class="input-row-3">
+                        <div class="form-group">
+                            <label class="form-label">Cardholder Name</label>
+                            <input type="text" class="form-input" placeholder="John Doe" id="cardHolder">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Subscription:</label>
+                            <select class="form-selection" id="subscriptionType">
+                                <option value="1">Weekly</option>
+                                <option value="2">Monthly</option>
+                                <option value="3">Yearly</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Time:</label>
+                            <select class="form-selection" id="deliveryTime">
+                                <option value="1">6am-8am</option>
+                                <option value="2">12pm-2pm</option>
+                                <option value="3">7pm-9pm</option>
+                            </select>
+                        </div>
                     </div>
 
-                    <label class="form-label">Subscription:</label>
-                    <div class="subscription-selection">
-                        <button class="selection-button">Weekly</button>
-                        <button class="selection-button">Monthly</button>
-                        <button class="selection-button">Yearly</button>
+                    <div class="action-footer">
+                        <button class="footer-btn btn-secondary back-button" onclick="proccedto1()">Back</button>
+                        <button class="footer-btn btn-primary next-button" onclick="proccedto3()">Next</button>
                     </div>
-<!--                    <a class="start-button" onclick="proccedto1()">Back</a>-->
-<!--                    <a class="start-button" onclick="proccedto3()">Next</a>-->
-                    <button class="start-button" onclick="proccedto1()">Back</button>
-                    <button class="start-button" onclick="proccedto3()">Next</button>
-                </div>
+                </form>
             </section>
         </section>
 
-        <section class="meal-planner-3" style="display: none;" id="meal-planner-3">
+        <section class="meal-planner-3" style="display: inline;" id="meal-planner-3">
             <section class="page-title">
                 <div class="title">
                     <h1>CheckOut</h1>
@@ -338,134 +353,132 @@
                 </div>
             </section>
 
-            <section class="checkout-section">
-                <div class="checkout-grid">
-                    <div class="section">
-                        <div class="section-header">
-                            <span style="font-size: 32px;">📋</span>
-                            <h2 class="section-title">Your Weekly Menu</h2>
-                        </div>
-
-                        <div class="weekly-summary">
-                            <div class="day-summary">
-                                <div class="day-info">
-                                    <div class="day-name">Monday</div>
-                                    <div class="meal-items">
-                                        <span>🍗</span>
-                                        <span>🫘</span>
-                                        <span>🍚</span>
-                                    </div>
-                                    <div class="meal-description">Teriyaki Chicken, Edamame, Steamed Rice</div>
-                                </div>
-                                <button class="edit-btn">Edit</button>
-                            </div>
-
-                            <div class="day-summary">
-                                <div class="day-info">
-                                    <div class="day-name">Tuesday</div>
-                                    <div class="meal-items">
-                                        <span>🐟</span>
-                                        <span>🥬</span>
-                                        <span>🍛</span>
-                                    </div>
-                                    <div class="meal-description">Salmon Fillet, Seaweed Salad, Fried Rice</div>
-                                </div>
-                                <button class="edit-btn">Edit</button>
-                            </div>
-
-                            <div class="day-summary">
-                                <div class="day-info">
-                                    <div class="day-name">Wednesday</div>
-                                    <div class="meal-items">
-                                        <span>🥩</span>
-                                        <span>🥟</span>
-                                        <span>🥒</span>
-                                    </div>
-                                    <div class="meal-description">Beef Bulgogi, Spring Rolls, Pickled Veggies</div>
-                                </div>
-                                <button class="edit-btn">Edit</button>
-                            </div>
-
-                            <div class="day-summary">
-                                <div class="day-info">
-                                    <div class="day-name">Thursday</div>
-                                    <div class="meal-items">
-                                        <span>🧈</span>
-                                        <span>🥟</span>
-                                        <span>🍚</span>
-                                    </div>
-                                    <div class="meal-description">Tofu Katsu, Gyoza, Steamed Rice</div>
-                                </div>
-                                <button class="edit-btn">Edit</button>
-                            </div>
-
-                            <div class="day-summary">
-                                <div class="day-info">
-                                    <div class="day-name">Friday</div>
-                                    <div class="meal-items">
-                                        <span>🦐</span>
-                                        <span>🫘</span>
-                                        <span>🍵</span>
-                                    </div>
-                                    <div class="meal-description">Grilled Shrimp, Edamame, Miso Soup</div>
-                                </div>
-                                <button class="edit-btn">Edit</button>
-                            </div>
-                        </div>
-
-                        <div class="delivery-info">
-                            <div class="info-row">
-                                <span class="info-icon">📅</span>
-                                <span><strong>Start Date:</strong> Next Monday, November 4, 2025</span>
-                            </div>
-                            <div class="info-row">
-                                <span class="info-icon">🚚</span>
-                                <span><strong>Delivery:</strong> Daily between 6:00 AM - 8:00 AM</span>
-                            </div>
-                            <div class="info-row">
-                                <span class="info-icon">📍</span>
-                                <span><strong>Location:</strong> Kathmandu, Bagmati Province</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="section order-summary">
+            <section class="checkout-grid">
+                <div class="section">
                     <div class="section-header">
-                        <span style="font-size: 32px;">💳</span>
-                        <h2 class="section-title">Order Summary</h2>
+                        <span style="font-size: 32px;">📋</span>
+                        <h2 class="section-title">Your Weekly Menu</h2>
                     </div>
 
-                    <div class="summary-row">
-                        <span class="summary-label">Weekly Subscription</span>
-                        <span class="summary-value">Rs. 999</span>
-                    </div>
-                    <div class="summary-row">
-                        <span class="summary-label">6 Lunches</span>
-                        <span class="summary-value">Included</span>
-                    </div>
-                    <div class="summary-row">
-                        <span class="summary-label">Delivery Fee</span>
-                        <span class="summary-value" style="color: #4caf50;">FREE</span>
-                    </div>
+                    <div class="weekly-summary">
+                        <div class="day-summary">
+                            <div class="day-info">
+                                <div class="day-name">Monday</div>
+                                <div class="meal-items">
+                                    <span>🍗</span>
+                                    <span>🫘</span>
+                                    <span>🍚</span>
+                                </div>
+                                <div class="meal-description">Teriyaki Chicken, Edamame, Steamed Rice</div>
+                            </div>
+                            <button class="edit-btn">Edit</button>
+                        </div>
 
-                    <div class="promo-section">
-                        <div class="promo-input-group">
-                            <input type="text" class="promo-input" placeholder="Enter promo code">
-                            <button class="apply-btn">Apply</button>
+                        <div class="day-summary">
+                            <div class="day-info">
+                                <div class="day-name">Tuesday</div>
+                                <div class="meal-items">
+                                    <span>🐟</span>
+                                    <span>🥬</span>
+                                    <span>🍛</span>
+                                </div>
+                                <div class="meal-description">Salmon Fillet, Seaweed Salad, Fried Rice</div>
+                            </div>
+                            <button class="edit-btn">Edit</button>
+                        </div>
+
+                        <div class="day-summary">
+                            <div class="day-info">
+                                <div class="day-name">Wednesday</div>
+                                <div class="meal-items">
+                                    <span>🥩</span>
+                                    <span>🥟</span>
+                                    <span>🥒</span>
+                                </div>
+                                <div class="meal-description">Beef Bulgogi, Spring Rolls, Pickled Veggies</div>
+                            </div>
+                            <button class="edit-btn">Edit</button>
+                        </div>
+
+                        <div class="day-summary">
+                            <div class="day-info">
+                                <div class="day-name">Thursday</div>
+                                <div class="meal-items">
+                                    <span>🧈</span>
+                                    <span>🥟</span>
+                                    <span>🍚</span>
+                                </div>
+                                <div class="meal-description">Tofu Katsu, Gyoza, Steamed Rice</div>
+                            </div>
+                            <button class="edit-btn">Edit</button>
+                        </div>
+
+                        <div class="day-summary">
+                            <div class="day-info">
+                                <div class="day-name">Friday</div>
+                                <div class="meal-items">
+                                    <span>🦐</span>
+                                    <span>🫘</span>
+                                    <span>🍵</span>
+                                </div>
+                                <div class="meal-description">Grilled Shrimp, Edamame, Miso Soup</div>
+                            </div>
+                            <button class="edit-btn">Edit</button>
                         </div>
                     </div>
 
-                    <div class="total-row">
-                        <div class="summary-row">
-                            <span class="summary-label">Total Due</span>
-                            <span class="summary-value">Rs. 999</span>
+                    <div class="delivery-info">
+                        <div class="info-row">
+                            <span class="info-icon">📅</span>
+                            <span><strong>Start Date:</strong> Next Monday, November 4, 2025</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-icon">🚚</span>
+                            <span><strong>Delivery:</strong> Daily between 6:00 AM - 8:00 AM</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-icon">📍</span>
+                            <span><strong>Location:</strong> Kathmandu, Bagmati Province</span>
                         </div>
                     </div>
                 </div>
-<!--                <a class="start-button" onclick="proccedto2()">Back</a>-->
-<!--                <a class="start-button" id="checkout-button" onclick="proccedto3()">Checkout</a>-->
-                <button class="start-button" onclick="proccedto2()">Back</button>
-                <button class="start-button" onclick="proccedto3()">Checkout</button>
+
+                <div>
+                    <div class="section order-summary">
+                        <div class="section-header">
+                            <span style="font-size: 32px;">💳</span>
+                            <h2 class="section-title">Order Summary</h2>
+                        </div>
+
+                        <div class="summary-row">
+                            <span class="summary-label">Weekly Subscription</span>
+                            <span class="summary-value">Rs. 999.00</span>
+                        </div>
+                        <div class="summary-row">
+                            <span class="summary-label">5 Lunches</span>
+                            <span class="summary-value">Included</span>
+                        </div>
+                        <div class="summary-row">
+                            <span class="summary-label">Delivery Fee</span>
+                            <span class="summary-value" style="color: #4caf50;">FREE</span>
+                        </div>
+
+                        <div class="promo-section">
+                            <div class="promo-input-group">
+                                <input type="text" class="promo-input" placeholder="Enter promo code">
+                                <button class="apply-btn">Apply</button>
+                            </div>
+                        </div>
+
+                        <div class="total-row">
+                            <div class="summary-row">
+                                <span class="summary-label">Total Due Today</span>
+                                <span class="summary-value">Rs 999.00</span>
+                            </div>
+                        </div>
+                        <button class="place-order-btn" onclick="placeOrder()">Place Order</button>
+                    </div>
+                </div>
             </section>
         </section>
     </section>
@@ -477,7 +490,26 @@
         </div>
     </footer>
     <div id="notification-container" style="position: fixed; top: 20px; right: 20px; z-index: 1000;"></div>
+    <script>
+        document.getElementById("form").addEventListener("checkout", async (e) => {
+            e.preventDefault();
+
+            const firstName = document.getElementById("firstName").value;
+            const lastName = document.getElementById("lastName").value;
+            const number = document.getElementById("Number").value;
+            const address = document.getElementById("Address").value;
+            const email = document.getElementById("email").value;
+            const cardNumber = document.getElementById("cardNumber").value;
+            const cardExpiry = document.getElementById("cardExpiry").value;
+            const cardCVV = document.getElementById("cardCVV").value;
+            const cardHolder = document.getElementById("cardHolder").value;
+            const subscriptionType = document.getElementById("subscriptionType").value;
+            const deliveryTime = document.getElementById("deliveryTime").value;
+
+        });
+    </script>
     <script src="../auth.js"></script>
+    <script src="../notifications.js"></script>
     <script src="../meal-planner.js"></script>
 </body>
 </html>
