@@ -20,7 +20,7 @@ async function checkSession() {
     }
 
     try {
-        const response = await fetch('http://localhost:3001/api/auth/check-session', {
+        const response = await fetch('https://boxdup-backend.onrender.com/api/auth/check-session', {
             headers: { 'Authorization': `Bearer ${token}` }
         });
         const result = await response.json();
@@ -65,7 +65,7 @@ async function checkSession() {
 //logout
 async function logout() {
     try {
-        const response = await fetch('http://localhost:3001/api/auth/logout', {
+        const response = await fetch('https://boxdup-backend.onrender.com/api/auth/logout', {
             method: 'POST',
             // credentials: 'include'
         });
