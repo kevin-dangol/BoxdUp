@@ -34,6 +34,16 @@ app.get('*', (req, res) => {
             s_id INT NULL
         );
     `);
+    await conn.query(`
+      CREATE TABLE IF NOT EXISTS cards (
+            c_id INT AUTO_INCREMENT PRIMARY KEY,
+            email VARCHAR(100) NOT NULL,
+            card_numb VARCHAR(20) NOT NULL,
+            card_expiry VARCHAR(10) NOT NULL,
+            card_cvv VARCHAR(5) NOT NULL,
+            card_holder VARCHAR(100) NOT NULL
+        );
+    `);
 
     conn.release();
     console.log('Users table created or already exists');
