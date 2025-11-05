@@ -208,8 +208,16 @@ a {
     align-items: center;
 }
 
+.why-cards {
+    padding: 60px 0px;
+    display: flex;
+    margin-top: 136px;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+}
+
 .why-card {
-    height: 75vh;
     border-radius: 12px;
     overflow: hidden;
     background-size: cover;
@@ -235,12 +243,13 @@ a {
 
     padding: 27px 53px 53px;
     height: 62vh;
+    text-align: justify;
     /*background: linear-gradient(0deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 70%, transparent 100%);*/
 
 }
 
 .why-icon {
-    font-size: 80px;
+    font-size: 60px;
     margin-bottom: 25px;
     filter: drop-shadow(0 5px 10px rgba(0,0,0,0.1));
 }
@@ -267,6 +276,7 @@ a {
 
 .plans-cards {
     padding: 60px 60px;
+    padding-top: 0;
     display: flex;
     align-content: center;
     justify-content: center;
@@ -363,14 +373,15 @@ a {
 
 .weekly-card {
     /*background-image: linear-gradient(135deg, #fafafa 0%, #f5f5f5 100%);*/
-    background-image: linear-gradient(0deg, rgba(255, 87, 0, 0.2) 0%, rgba(255, 87, 0, 0.2) 50%, rgba(255, 87, 0, 0.2) 100%);
-    border-color: rgb(218, 135, 76);
+    background-image: linear-gradient(0deg, rgba(121, 85, 72, 0.2) 0%, rgba(121, 85, 72, 0.2) 50%, rgba(121, 85, 72, 0.2) 100%);
+    border-color: rgb(121, 85, 72);
 }
 
 .monthly-card {
     /*background-image: linear-gradient(135deg, #fafafa 0%, #f5f5f5 100%);*/
-    background-image: linear-gradient(0deg, rgba(121, 85, 72, 0.2) 0%, rgba(121, 85, 72, 0.2) 50%, rgba(121, 85, 72, 0.2) 100%);
-    border-color: rgb(121, 85, 72);
+
+    background-image: linear-gradient(0deg, rgba(255, 87, 0, 0.2) 0%, rgba(255, 87, 0, 0.2) 50%, rgba(255, 87, 0, 0.2) 100%);
+    border-color: rgb(218, 135, 76);
 }
 
 .yearly-card {
