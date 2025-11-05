@@ -180,13 +180,13 @@ a {
 .card-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 215px;
+    gap: 7vw;
 }
 
 .why-card-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 107px;
+    gap: 5vw;
 }
 
 .cards-title {
@@ -209,7 +209,6 @@ a {
 }
 
 .why-card {
-    height: 376px;
     border-radius: 12px;
     overflow: hidden;
     background-size: cover;
@@ -235,12 +234,13 @@ a {
 
     padding: 27px 53px 53px;
     height: 62vh;
+    text-align: justify;
     /*background: linear-gradient(0deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 70%, transparent 100%);*/
 
 }
 
 .why-icon {
-    font-size: 80px;
+    font-size: 60px;
     margin-bottom: 25px;
     filter: drop-shadow(0 5px 10px rgba(0,0,0,0.1));
 }
@@ -267,6 +267,7 @@ a {
 
 .plans-cards {
     padding: 60px 60px;
+    padding-top: 0;
     display: flex;
     align-content: center;
     justify-content: center;

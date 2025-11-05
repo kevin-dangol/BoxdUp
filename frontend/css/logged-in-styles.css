@@ -180,13 +180,13 @@ a {
 .card-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 215px;
+    gap: 7vw;
 }
 
 .why-card-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 107px;
+    gap: 5vw;
 }
 
 .cards-title {
@@ -209,7 +209,7 @@ a {
 }
 
 .why-card {
-    height: 376px;
+    height: 75vh;
     border-radius: 12px;
     overflow: hidden;
     background-size: cover;
