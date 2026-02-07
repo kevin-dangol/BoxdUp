@@ -2,7 +2,7 @@ const express = require('express');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const User = require('../models/user');
-const { supabase } = require('../config/db');
+const { supabase, supabaseAdmin } = require('../config/db');
 const router = express.Router();
 const SECRET_KEY = "secret_key";
 

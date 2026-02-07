@@ -27,9 +27,32 @@
 
 // module.exports = pool;
 
-const { createClient } = require('@supabase/supabase-js');
+// const { createClient } = require('@supabase/supabase-js');
 
-//Supabase client for client-side
+// require('dotenv').config();
+
+// console.log("Supabase URL:", process.env.BoxdUpDB_SUPABASE_URL);
+// console.log("Supabase Service Role Key:", process.env.BoxdUpDB_SUPABASE_SERVICE_ROLE_KEY);
+
+// //Supabase client for client-side
+// const supabase = createClient(
+//   process.env.NEXT_PUBLIC_SUPABASE_URL,
+//   process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+// );
+
+// // Supabase client for server-side
+// const supabaseAdmin = createClient(
+//   process.env.BoxdUpDB_SUPABASE_URL,
+//   process.env.BoxdUpDB_SUPABASE_SERVICE_ROLE_KEY
+// );
+
+// module.exports = { supabase, supabaseAdmin };
+
+const { createClient } = require('@supabase/supabase-js');
+const { Client } = require('pg');  // Make sure you're using the pg package
+require('dotenv').config();
+
+// If you're using the Supabase Client directly:
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL,
   process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
@@ -41,4 +64,19 @@ const supabaseAdmin = createClient(
   process.env.BoxdUpDB_SUPABASE_SERVICE_ROLE_KEY
 );
 
-module.exports = { supabase, supabaseAdmin };
+// For direct Postgres connection using pg package
+const dbClient = new Client({
+  connectionString: process.env.BoxdUpDB_POSTGRES_URL,
+  ssl: {
+    rejectUnauthorized: false,
+    sslmode: 'verify-full',
+  },
+});
+
+dbClient.connect()
+  .then(() => {
+    console.log('Connected to Supabase Postgres');
+  })
+  .catch((error) => {
+    console.error('Error connecting to Supabase Postgres:', error);
+  });

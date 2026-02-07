@@ -102,6 +102,8 @@ const authRoutes = require('./routes/auth');
 const { supabase, supabaseAdmin } = require('./config/db');
 const { Client } = require('pg');
 const path = require('path');
+require('dotenv').config();
+
 
 const app = express();
 
