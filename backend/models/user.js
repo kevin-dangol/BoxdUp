@@ -1,40 +1,68 @@
-const db = require('../config/db');
+const { supabaseAdmin } = require('../config/db');
 
 class User {
-    static async create(email, username, password) {
-        const query = 'INSERT INTO users (email, username, password, is_admin) VALUES (?, ?, ?, ?)';
-        await db.query(query, [email, username, password, false]);
+  // Create a new user
+  static async create(email, username, password) {
+    const { data, error } = await supabaseAdmin
+      .from('users')
+      .insert([{ email, username, password, is_admin: false }]);
+
+    if (error) {
+      throw new Error(`Failed to create user: ${error.message}`);
     }
 
-    static async findByUsername(username) {
-        const [rows] = await db.query('SELECT * FROM users WHERE username = ?', [username]);
-        return rows[0];
+    return data;
+  }
+
+  // Find a user by username
+  static async findByUsername(username) {
+    const { data, error } = await supabaseAdmin
+      .from('users')
+      .select('*')
+      .eq('username', username)
+      .single();
+
+    if (error) {
+      throw new Error(`Failed to find user by username: ${error.message}`);
     }
 
-    static async findById(id) {
-        const [rows] = await db.query('SELECT * FROM users WHERE id = ?', [id]);
-        return rows[0];
+    return data;
+  }
+
+  // Find a user by ID
+  static async findById(id) {
+    const { data, error } = await supabaseAdmin
+      .from('users')
+      .select('*')
+      .eq('id', id)
+      .single();
+
+    if (error) {
+      throw new Error(`Failed to find user by ID: ${error.message}`);
     }
 
-    static async updateUserCardAndSubscription(email) {
-        const updateCardQuery = `UPDATE users JOIN cards
-                                        ON users.email = cards.email
-                                        SET users.c_id = cards.c_id
-                                        WHERE users.email = ?`;
+    return data;
+  }
 
-        const updateSubQuery = `UPDATE users
-                                       JOIN subscriptions ON users.email = subscriptions.email
-                                       SET users.s_id = subscriptions.s_id
-                                       WHERE users.email = ?`;
+  // Update user card and subscription
+  static async updateUserCardAndSubscription(email) {
+    try {
+      // Update user card relationship
+      await supabaseAdmin
+        .from('users')
+        .update({ c_id: supabaseAdmin.from('cards').eq('email', email).select('c_id') })
+        .eq('email', email);
 
-        try {
-            await db.query(updateCardQuery, [email]);
-            await db.query(updateSubQuery, [email]);
-        } catch (error) {
-            console.error('Error updating user card/subscription IDs:', error);
-            throw error;
-        }
+      // Update user subscription relationship
+      await supabaseAdmin
+        .from('users')
+        .update({ s_id: supabaseAdmin.from('subscriptions').eq('email', email).select('s_id') })
+        .eq('email', email);
+    } catch (error) {
+      console.error('Error updating user card/subscription:', error);
+      throw error;
     }
+  }
 }
 
 module.exports = User;

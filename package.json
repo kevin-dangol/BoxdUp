@@ -8,6 +8,7 @@
   },
   "private": true,
   "dependencies": {
+    "@vercel/analytics": "^1.6.1",
     "bcryptjs": "^3.0.2",
     "cors": "^2.8.5",
     "dotenv": "^17.2.3",

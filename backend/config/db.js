@@ -29,16 +29,16 @@
 
 const { createClient } = require('@supabase/supabase-js');
 
-// Create the Supabase client
+//Supabase client for client-side
 const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL, // Your Supabase URL
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY // Your public anonymous key (this can be used for public operations)
+  process.env.NEXT_PUBLIC_SUPABASE_URL,
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
 );
 
-// For server-side/admin actions, use the service role key
+// Supabase client for server-side
 const supabaseAdmin = createClient(
-  process.env.SUPABASE_URL, // URL
-  process.env.SUPABASE_SERVICE_ROLE_KEY // Admin key
+  process.env.BoxdUpDB_SUPABASE_URL,
+  process.env.BoxdUpDB_SUPABASE_SERVICE_ROLE_KEY
 );
 
 module.exports = { supabase, supabaseAdmin };
