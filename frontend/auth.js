@@ -86,7 +86,7 @@
 // document.addEventListener('DOMContentLoaded', checkSession);
 
 // Initialize Supabase Client
-const { createClient } = require('@supabase/supabase-js');
+const { supabase, supabaseAdmin } = require('./config/db');
 
 const supabase = createClient(
     'https://lfpohlqfxxbtzpzmiqny.supabase.co', // Your Supabase URL

@@ -1,4 +1,4 @@
-const { supabaseAdmin } = require('../config/db');
+const { supabase, supabaseAdmin } = require('./config/db');
 
 class User {
   // Create a new user
