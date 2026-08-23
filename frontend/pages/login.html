@@ -103,59 +103,34 @@
     </script>
     <script src="/frontend/auth.js"></script>
     <script src="/frontend/notifications.js"></script> -->
-    <script>
-        // Wait for the DOM to load
-        document.addEventListener('DOMContentLoaded', () => {
-            // Listen for form submission
-            document.getElementById("login-form").addEventListener("submit", async (e) => {
-                e.preventDefault();
+    <script type="module">
+        import { auth } from "../firebase-config.js";
+        import { signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
 
-                const username = document.getElementById("username").value;
-                const password = document.getElementById("password").value;
+        document.getElementById("login-form").addEventListener("submit", async (e) => {
+            e.preventDefault();
 
-                console.log('Submitting login request:', { username, password });
+            // Firebase Auth signs in with email, so the "Username" field
+            // is expected to be the account email.
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
 
-                try {
-                    // Supabase login API call
-                    const { data, error } = await supabase.auth.signInWithPassword({
-                        email: username,  // Supabase uses email as the username
-                        password: password
-                    });
-
-                    // Handle login success and failure
-                    if (error) {
-                        showNotification('Login failed: ' + error.message, 'error');
-                    } else {
-                        // Store the token in localStorage for future requests
-                        const { user, session } = data;
-                        localStorage.setItem('token', session.access_token);
-                        localStorage.setItem('is_admin', user.role === 'admin' ? 'true' : 'false');
-
-                        showNotification('Login successful!', 'info');
-                        setTimeout(() => {
-                            window.location.href = "../pages/home.html";
-                        }, 3000);
-                    }
-                } catch (error) {
-                    console.error('Login error:', error);
-                    showNotification('Failed to log in. Please try again later.', 'error');
-                }
-            });
+            try {
+                await signInWithEmailAndPassword(auth, username, password);
+                showNotification('Login successful!', 'info');
+                setTimeout(() => {
+                    window.location.href = "../pages/home.html";
+                }, 1500);
+            } catch (error) {
+                console.error('Login error:', error);
+                showNotification('Login failed: ' + error.message, 'error');
+            }
         });
     </script>
 
-    <!-- Include Supabase client -->
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.0.0/dist/supabase.min.js"></script>
-    <script>
-        // Initialize the Supabase client (replace with your own credentials)
-        const supabase = createClient(
-            'https://lfpohlqfxxbtzpzmiqny.supabase.co',
-            'your-supabase-anon-key'
-        );
-    </script>
-
-    <!-- Include custom notifications and auth script -->
-    <script src="/frontend/auth.js"></script>
+    <!-- notifications.js is a plain script (no Firebase needed); auth.js and
+         meal-planner.js are ES modules -->
     <script src="/frontend/notifications.js"></script>
+    <script type="module" src="/frontend/auth.js"></script>
 </body>
 </html>

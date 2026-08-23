@@ -96,7 +96,10 @@
     </script>
     <script src="/frontend/auth.js"></script>
     <script src="/frontend/notifications.js"></script> -->
-    <script>
+    <script type="module">
+        import { auth, API_BASE } from "../firebase-config.js";
+        import { createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
+
         document.getElementById("signup-form").addEventListener("submit", async (e) => {
             e.preventDefault();
 
@@ -105,42 +108,32 @@
             const password = document.getElementById("password").value;
 
             try {
-                // Supabase signup API call
-                const { data, error } = await supabase.auth.signUp({
-                    email: email,  // Use email for registration
-                    password: password
+                const cred = await createUserWithEmailAndPassword(auth, email, password);
+                const token = await cred.user.getIdToken();
+
+                // Create the Firestore profile doc (username, is_admin, etc.)
+                await fetch(`${API_BASE}/api/auth/sync-profile`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        Authorization: `Bearer ${token}`,
+                    },
+                    body: JSON.stringify({ username }),
                 });
 
-                // Handle error during signup
-                if (error) {
-                    showNotification('Signup failed: ' + error.message, 'error');
-                } else {
-                    // If signup is successful, show success message and redirect
-                    showNotification('Signup successful! Please check your email for a confirmation link.', 'info');
-                    setTimeout(() => {
-                        window.location.href = "login.html";  // Redirect to login page after signup
-                    }, 3000);
-                }
+                showNotification('Signup successful!', 'info');
+                setTimeout(() => {
+                    window.location.href = "login.html";
+                }, 1500);
             } catch (error) {
                 console.error('Signup error:', error);
-                showNotification('Failed to sign up. Please try again later.', 'error');
+                showNotification('Signup failed: ' + error.message, 'error');
             }
         });
     </script>
 
-    <!-- Include Supabase client -->
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.0.0/dist/umd/supabase.min.js"></script>
-
-    <script>
-        // Initialize the Supabase client (replace with your actual Supabase credentials)
-        const supabase = supabase.createClient(
-            'https://lfpohlqfxxbtzpzmiqny.supabase.co',  // Replace with your Supabase URL
-            'your-supabase-anon-key'  // Replace with your Supabase Anon Key
-        );
-    </script>
-
     <!-- Include custom notifications and auth scripts -->
     <script src="/frontend/notifications.js"></script>
-    <script src="/frontend/auth.js"></script>
+    <script type="module" src="/frontend/auth.js"></script>
 </body>
 </html>
