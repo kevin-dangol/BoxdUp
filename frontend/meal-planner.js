@@ -201,8 +201,6 @@ function proccedto3() {
   mealplanner3.style.display = 'inline';
 }
 
-// This file is loaded as an ES module, so nothing here is global by default.
-// The HTML uses inline onclick="..." handlers, which need these on `window`.
 Object.assign(window, {
   openCustomizer,
   closeCustomizer,

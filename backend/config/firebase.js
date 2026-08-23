@@ -1,11 +1,5 @@
 const admin = require('firebase-admin');
 
-// On Render: set FIREBASE_SERVICE_ACCOUNT_KEY to the full JSON contents of
-// your service account key (Firebase Console > Project Settings > Service
-// Accounts > Generate new private key), pasted as a single-line string.
-//
-// Locally: create backend/config/serviceAccountKey.json (gitignored) with
-// the same contents, and it'll be picked up automatically.
 let serviceAccount;
 
 if (process.env.FIREBASE_SERVICE_ACCOUNT_KEY) {

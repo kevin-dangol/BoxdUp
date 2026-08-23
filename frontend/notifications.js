@@ -1,23 +1,3 @@
-// //notifications
-// function showNotification(message, type = 'info') {
-//     const container = document.getElementById('notification-container');
-//     if (!container) return;
-
-//     const notification = document.createElement('div');
-//     notification.className = `notification ${type}`;
-//     notification.innerHTML = `
-//         <span>${message}</span>
-//         <button class="close-btn" onclick="this.parentElement.remove()">×</button>
-//     `;
-
-//     container.appendChild(notification);
-
-//     //remove notifier after 5 sec
-//     setTimeout(() => {
-//         notification.remove();
-//     }, 5000);
-// }
-
 //notifications
 function showNotification(message, type = 'info', duration = 5000) {
     const container = document.getElementById('notification-container');
@@ -37,12 +17,11 @@ function showNotification(message, type = 'info', duration = 5000) {
 
     //remove notifier after the specified duration
     setTimeout(() => {
-        notification.style.animation = 'fadeOut 0.5s ease-in-out'; // Add fade-out animation
-        setTimeout(() => notification.remove(), 500); // Wait for animation to finish before removing
+        notification.style.animation = 'fadeOut 0.5s ease-in-out';
+        setTimeout(() => notification.remove(), 500);
     }, duration);
 }
 
-// Add some basic CSS for the fade-in and fade-out animations
 const style = document.createElement('style');
 style.innerHTML = `
     .notification {

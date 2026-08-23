@@ -3,10 +3,6 @@ const { auth } = require('../config/firebase');
 const User = require('../models/user');
 const router = express.Router();
 
-// Firebase Auth (signup/login/logout) happens entirely client-side with the
-// Firebase JS SDK. This backend only verifies the ID token the client sends
-// and manages the Firestore profile doc (username, is_admin, etc).
-
 const verifyToken = async (req, res, next) => {
   const token = req.headers.authorization?.split(' ')[1];
   if (!token) {
@@ -37,7 +33,6 @@ const verifyAdmin = [
   },
 ];
 
-// Called once, right after the client finishes Firebase createUserWithEmailAndPassword
 router.post('/sync-profile', verifyToken, async (req, res) => {
   try {
     const { username } = req.body;
@@ -50,7 +45,6 @@ router.post('/sync-profile', verifyToken, async (req, res) => {
   }
 });
 
-// Checked by the frontend on page load to decide what nav links to show
 router.get('/check-session', verifyToken, async (req, res) => {
   try {
     const user = await User.findByUid(req.decodedToken.uid);
