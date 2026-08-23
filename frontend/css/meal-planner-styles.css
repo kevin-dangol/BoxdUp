@@ -1,5 +1,19 @@
 /*Meal planner*/
 
+/* Override the site-wide .main-bg (which only covers the top 35% of the
+   viewport, leaving a hard cutoff to solid black). On this page the food
+   image should cover the whole viewport with a smooth fade instead. */
+body.main-bg {
+    background-image:
+        linear-gradient(180deg, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.75) 55%, rgba(0,0,0,0.95) 100%),
+        url(../imgs/main.jpg);
+    background-size: cover;
+    background-position: top center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    min-height: 100vh;
+}
+
 * {
     margin: 0;
     padding: 0;

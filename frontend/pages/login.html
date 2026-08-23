@@ -104,19 +104,34 @@
     <script src="/frontend/auth.js"></script>
     <script src="/frontend/notifications.js"></script> -->
     <script type="module">
-        import { auth } from "../firebase-config.js";
+        import { auth, API_BASE } from "../firebase-config.js";
         import { signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
+
+        // Firebase Auth only signs in by email. The "Username" field can be
+        // either — if it looks like an email we use it directly, otherwise
+        // we look up the matching email via the backend first.
+        async function resolveEmail(identifier) {
+            if (identifier.includes('@')) return identifier;
+
+            const response = await fetch(
+                `${API_BASE}/api/auth/resolve-email?username=${encodeURIComponent(identifier)}`
+            );
+            if (!response.ok) {
+                throw new Error('No account found for that username');
+            }
+            const result = await response.json();
+            return result.email;
+        }
 
         document.getElementById("login-form").addEventListener("submit", async (e) => {
             e.preventDefault();
 
-            // Firebase Auth signs in with email, so the "Username" field
-            // is expected to be the account email.
-            const username = document.getElementById("username").value;
+            const identifier = document.getElementById("username").value;
             const password = document.getElementById("password").value;
 
             try {
-                await signInWithEmailAndPassword(auth, username, password);
+                const email = await resolveEmail(identifier);
+                await signInWithEmailAndPassword(auth, email, password);
                 showNotification('Login successful!', 'info');
                 setTimeout(() => {
                     window.location.href = "../pages/home.html";

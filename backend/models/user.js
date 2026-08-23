@@ -3,7 +3,8 @@ const { db } = require('../config/firebase');
 const USERS = 'users';
 
 class User {
-
+  // Create/merge a Firestore profile doc for a Firebase Auth user.
+  // Called right after Firebase client-side signup completes.
   static async createProfile(uid, email, username) {
     await db.collection(USERS).doc(uid).set(
       {
@@ -31,6 +32,16 @@ class User {
     return { id: docSnap.id, ...docSnap.data() };
   }
 
+  static async findByUsername(username) {
+    const snap = await db.collection(USERS).where('username', '==', username).limit(1).get();
+    if (snap.empty) return null;
+    const docSnap = snap.docs[0];
+    return { id: docSnap.id, ...docSnap.data() };
+  }
+
+  // Link a user's card/subscription record ids (equivalent of the old
+  // c_id / s_id foreign keys). Call these after cards/subscriptions are
+  // written to their own Firestore collections.
   static async setCardId(uid, cId) {
     await db.collection(USERS).doc(uid).update({ c_id: cId });
   }

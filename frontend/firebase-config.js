@@ -1,3 +1,7 @@
+// Shared Firebase client init. Loaded as an ES module (type="module").
+// The apiKey below is a public web API key, not a secret — Firebase auth
+// and Firestore access are actually protected by Firebase Auth + Firestore
+// security rules, which you configure in the Firebase console.
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
 import { getAuth } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
 import { getFirestore } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
@@ -16,4 +20,5 @@ export const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 export const db = getFirestore(app);
 
+// Where the Express/Firestore-admin backend is deployed on Render.
 export const API_BASE = "https://boxdup.onrender.com";

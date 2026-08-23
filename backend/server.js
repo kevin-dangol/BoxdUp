@@ -7,6 +7,8 @@ const { db } = require('./config/firebase');
 
 const app = express();
 
+// Set FRONTEND_URL on Render to your Vercel deployment URL, e.g.
+// https://boxd-up.vercel.app  (no trailing slash)
 const corsOptions = {
   origin: process.env.FRONTEND_URL || 'https://boxd-up.vercel.app',
   credentials: true,
@@ -22,6 +24,7 @@ app.get('/', (req, res) => {
 // API routes
 app.use('/api/auth', authRoutes);
 
+// Admin-only: list users (Firestore replaces the old `users` SQL table)
 app.get('/api/users', verifyAdmin, async (req, res) => {
   try {
     const snap = await db.collection('users').get();
@@ -32,6 +35,9 @@ app.get('/api/users', verifyAdmin, async (req, res) => {
   }
 });
 
+// Admin-only: delete a user's Firestore profile.
+// Note: this does NOT delete the underlying Firebase Auth account — do that
+// separately with admin.auth().deleteUser(uid) if you want a full wipe.
 app.delete('/api/users/:id', verifyAdmin, async (req, res) => {
   try {
     await db.collection('users').doc(req.params.id).delete();
@@ -41,6 +47,8 @@ app.delete('/api/users/:id', verifyAdmin, async (req, res) => {
   }
 });
 
+// This backend is API-only. The frontend is deployed separately on Vercel
+// (see MIGRATION_GUIDE.md) — there's no static frontend to serve here.
 app.use((req, res) => {
   res.status(404).json({ error: 'Not found' });
 });
